@@ -1,0 +1,12 @@
+[user]
+	email = pearcedavis@fastmail.com
+	name = Pearce Davis
+[alias]
+	co = commit
+	ch = checkout
+	br =  branch
+	st = status
+	ls = ls-files
+	root = rev-parse --show-toplevel
+[core]
+	excludesfile = /home/pearce/.gitignore

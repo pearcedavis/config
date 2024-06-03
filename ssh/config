@@ -1,0 +1,5 @@
+AddKeysToAgent yes
+
+Host github.com
+  HostName github.com
+  IdentityFile /home/pearce/.ssh/id_ed25519_github
