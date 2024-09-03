@@ -1,0 +1,19 @@
+export HOMEBREW_PREFIX="$(brew --prefix)"
+export HOMEBREW_CELLAR="$(brew --cellar)"
+export HOMEBREW_REPOSITORY="$(brew --repo)"
+
+export PATH=$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH
+export PATH=$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH
+export PATH=$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH
+export PATH=$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH
+export PATH=$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin:$PATH
+export PATH=$HOMEBREW_PREFIX/opt/gawk/libexec/gnubin:$PATH
+
+export PATH=$HOMEBREW_PREFIX/bin:$PATH
+
+export BASH_COMPLETION_COMPAT_DIRECTORY="$HOMEBREW_PREFIX/etc/bash_completion.d"
+[[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+
+if [ -f ~/.bashrc ]; then
+. ~/.bashrc
+fi
