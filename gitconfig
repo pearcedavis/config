@@ -10,3 +10,5 @@
 	root = rev-parse --show-toplevel
 [core]
 	excludesfile = /home/pearce/.gitignore
+[push]
+	autoSetupRemote = true

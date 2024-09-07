@@ -12,6 +12,7 @@ endif
 " enable truecolor
 set termguicolors
 
+syntax on
 colorscheme monokai
 
 " show matching brackets
@@ -65,6 +66,7 @@ nnoremap <Leader>ff :ALEFix<CR>
 nnoremap <Leader>gs :Git<CR>
 nnoremap <Leader>gd :Gdiffsplit<CR>
 nnoremap <Leader>r :redraw!<CR>
+nnoremap <Leader>t :NERDTreeToggle<CR>
 inoremap <C-L> <C-X><C-L>
 nnoremap qq <NOP>
 " centre search results
@@ -104,6 +106,17 @@ let g:coc_start_at_startup = 0
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
+
+" let g:jedi#auto_initialization = 0
+let g:jedi#goto_command = "gt"
+let g:jedi#goto_assignments_command = ""
+let g:jedi#goto_stubs_command = ""
+let g:jedi#goto_definitions_command = ""
+" let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = ""
+" let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = ""
+let g:jedi#rename_command_keep_name = ""
 
 " set text width for wrapping comments with gq
 set textwidth=80
