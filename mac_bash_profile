@@ -1,24 +1,33 @@
-export PATH=/opt/homebrew/bin:$PATH
-export SHELL=/opt/homebrew/bin/bash
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
 
-export HOMEBREW_PREFIX="$(brew --prefix)"
-export HOMEBREW_CELLAR="$(brew --cellar)"
-export HOMEBREW_REPOSITORY="$(brew --repo)"
+export SHELL=$HOMEBREW_PREFIX/bin/bash
 
-export PATH=$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH
-export PATH=$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH
-export PATH=$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH
-export PATH=$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH
-export PATH=$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin:$PATH
-export PATH=$HOMEBREW_PREFIX/opt/gawk/libexec/gnubin:$PATH
+BREW_PATH=$HOMEBREW_PREFIX/bin
+for pkg in coreutils findutils grep gnu-sed gnu-tar gawk; do
+	BREW_PATH=$HOMEBREW_PREFIX/opt/$pkg/libexec/gnubin:$BREW_PATH
+done
+export PATH=$BREW_PATH:$PATH
+
+export PATH="$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"
 
 export BASH_COMPLETION_COMPAT_DIRECTORY="$HOMEBREW_PREFIX/etc/bash_completion.d"
 [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+
+export CLICOLOR=1
+
+function pidof {
+	if [ -z $1 ]; then
+		return 1
+	fi
+	ps aux | grep -w $1 | grep -v grep | awk '{ print $2 }'
+}
 
 if [ -f ~/.bashrc ]; then
 . ~/.bashrc
 fi
 
-complete -C /opt/homebrew/bin/terraform terraform
-
-export CLICOLOR=1
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/pearcedavis/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

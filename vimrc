@@ -3,8 +3,8 @@ filetype plugin indent on
 " fix truecolor support when in tmux
 if !empty($TMUX)
 	" The "^[" is a single character. You enter it by pressing Ctrl+v and then ESC.
-	set t_8f=[38;2;%lu;%lu;%lum
-	set t_8b=[48;2;%lu;%lu;%lum
+	" set t_8f=[38;2;%lu;%lu;%lum
+	" set t_8b=[48;2;%lu;%lu;%lum
 else
 	" show git info when not in tmux
 	" set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
@@ -28,6 +28,10 @@ set statusline=%<%F\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " have filename in titlebar
 set title
+
+" check spelling
+" set spell
+" set spelllang=en_gb
 
 " better searching
 set incsearch
@@ -78,10 +82,14 @@ vnoremap p "_dP
 vnoremap c "_c
 nnoremap c "_c
 " clipboard copy and paste
+vnoremap <C-C> "*y
+nnoremap <C-V> "*p
 " vnoremap <C-C> :w !xsel -i -b<CR><CR>
 " nnoremap <C-V> :r !xsel -o -b<CR>
-vnoremap <C-C> :w !wl-copy <CR><CR>
-nnoremap <C-V> :r !wl-paste<CR>
+" vnoremap <C-C> :w !wl-copy <CR><CR>
+" nnoremap <C-V> :r !wl-paste<CR>
+" vnoremap <C-C> :w !pbcopy <CR><CR>
+" nnoremap <C-V> :r !pbpaste<CR>
 
 " normal tab complete
 set wildmode=longest,list,full
@@ -91,37 +99,28 @@ set wildignore+=*/node_modules/*,*/.emitted/*
 set wildignore+=*/__pycache__/*,*.pyc,*.pyo,*/venv/*
 set wildignore+=*/.cache/*
 
+set rtp+=/opt/homebrew/opt/fzf
 " default to regex search (not fuzzy)
 let g:ctrlp_regexp = 1
 " list untracked files as well, such as new ones not added yet
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files && git ls-files --others --exclude-standard']
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files && git ls-files --others --exclude-standard']
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --cached --others --exclude-standard']
 let g:ctrlp_use_caching = 0
 let g:ctrlp_mruf_exclude = '.git/COMMIT_EDITMSG'
 let g:ctrlp_match_current_file = 1
 let g:ctrlp_mruf_relative = 1
 
-let g:coc_disable_startup_warning = 1
-let g:coc_start_at_startup = 0
-
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
-
-" let g:jedi#auto_initialization = 0
-let g:jedi#goto_command = "gt"
-let g:jedi#goto_assignments_command = ""
-let g:jedi#goto_stubs_command = ""
-let g:jedi#goto_definitions_command = ""
-" let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = ""
-" let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = ""
-let g:jedi#rename_command_keep_name = ""
 
 " set text width for wrapping comments with gq
 set textwidth=80
 " disable autowrap (still autowraps in comment blocks)
 set formatoptions-=t
+set formatoptions+=j
+
+set backspace=indent,eol,start
 
 set path-=/usr/include
 " gridshare

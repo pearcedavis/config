@@ -19,6 +19,8 @@ nnoremap <buffer> K <CursorHold>
 let b:ale_fixers = ['eslint', 'prettier']
 let b:ale_linters = ['tsserver', 'eslint']
 
+" let g:ale_typescript_tsserver_executable = 'tsserver'
+
 setlocal matchpairs+=<:>
 
 setlocal include=\\sfrom\\s
@@ -26,12 +28,12 @@ setlocal include=\\sfrom\\s
 setlocal define=^\\s*\\(export\\)\\?\\s*\\(const\\\|type\\\|interface\\)
 
 " gridshare
-setlocal path+=shared
+" setlocal path+=shared
 
 setlocal formatexpr=
-setlocal formatprg=pnpm\ exec\ prettier\ --parser\ typescript
+setlocal formatprg=npx\ prettier\ --parser\ typescript
 
-setlocal makeprg=pnpm\ exec\ tsc\ -b
+setlocal makeprg=tsc\ -b
 setlocal errorformat=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m
 
 " always append '.' so we match foo.ts instead of the foo/ dir

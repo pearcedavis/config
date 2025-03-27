@@ -22,5 +22,11 @@ setlocal path+=src
 
 let python_highlight_all=1
 
+let g:ale_python_auto_virtualenv = 1
 let b:ale_fixers = ['isort', 'ruff_format']
-let b:ale_linters = ['ruff', 'mypy']
+let b:ale_python_isort_options = '--profile black --src /Users/pearcedavis/code/fusion/apps/user-management/src'
+let b:ale_linters = ['jedils', 'ruff', 'mypy']
+let b:ale_python_mypy_options = '--ignore-missing-imports'
+
+nnoremap <buffer> <silent> gt :ALEGoToDefinition<CR>
+nnoremap <buffer> <silent> K :ALEHover<CR>
